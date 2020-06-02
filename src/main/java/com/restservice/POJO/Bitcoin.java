@@ -1,10 +1,10 @@
 package com.restservice.POJO;
 
-public class BitcoinPOJO {
+public class Bitcoin {
     private String disclaimer;
     private String rate;
 
-    public BitcoinPOJO(String disclaimer, String rate) {
+    public Bitcoin(String disclaimer, String rate) {
         this.disclaimer = disclaimer;
         this.rate = rate;
     }

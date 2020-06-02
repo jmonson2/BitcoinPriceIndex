@@ -3,8 +3,8 @@ package com.restservice.Controllers;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.restservice.POJO.BitcoinAllCurrencyPOJO;
-import com.restservice.POJO.BitcoinPOJO;
+import com.restservice.POJO.BitcoinAllCurrency;
+import com.restservice.POJO.Bitcoin;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,49 +21,53 @@ public class BitcoinController {
     private JsonParser springParser = JsonParserFactory.getJsonParser();
 
     @PostMapping("/bitcoin")
-    public BitcoinAllCurrencyPOJO bitcoin() {
+    public BitcoinAllCurrency bitcoin() {
         String disclaimer;
+        String exchangeResponse;
         Map<String, Object> results;
+        Map<String, Object> exchangeResults;
         String response = restTemplate.getForObject(REQUEST_URI, String.class);
+        exchangeResponse = restTemplate.getForObject(EXCHANGE_REQUEST_URI, String.class);
         results = springParser.parseMap(response);
+        exchangeResults = springParser.parseMap(exchangeResponse);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceUSD =  getPrice(USD, results);
         String priceEUR = getPrice(EUR, results);
         String priceGBP = getPrice(GBP, results);
-        return new BitcoinAllCurrencyPOJO(disclaimer, priceUSD, priceEUR, priceGBP);
+        return new BitcoinAllCurrency(disclaimer, priceUSD, priceEUR, priceGBP);
     }
 
     @PostMapping("/bitcoin/USD")
-    public BitcoinPOJO bitcoinUSD() {
+    public Bitcoin bitcoinUSD() {
         String disclaimer;
         Map<String, Object> results;
         String response = restTemplate.getForObject(REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceUSD =  getPrice(USD, results);
-        return new BitcoinPOJO(disclaimer, priceUSD);
+        return new Bitcoin(disclaimer, priceUSD);
     }
 
     @PostMapping("/bitcoin/EUR")
-    public BitcoinPOJO bitcoinEUR() {
+    public Bitcoin bitcoinEUR() {
         String disclaimer;
         Map<String, Object> results;
         String response = restTemplate.getForObject(REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceEUR =  getPrice(EUR, results);
-        return new BitcoinPOJO(disclaimer, priceEUR);
+        return new Bitcoin(disclaimer, priceEUR);
     }
 
     @PostMapping("/bitcoin/GBP")
-    public BitcoinPOJO bitcoinGBP() {
+    public Bitcoin bitcoinGBP() {
         String disclaimer;
         Map<String, Object> results;
         String response = restTemplate.getForObject(REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceGBP =  getPrice(GBP, results);
-        return new BitcoinPOJO(disclaimer, priceGBP);
+        return new Bitcoin(disclaimer, priceGBP);
     }
 
     private String getPrice(String type, Map<String, Object> bpi) {
