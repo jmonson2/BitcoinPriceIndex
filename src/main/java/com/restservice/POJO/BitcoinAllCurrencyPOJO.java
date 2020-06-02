@@ -1,4 +1,4 @@
-package com.example.restservice.POJO;
+package com.restservice.POJO;
 
 public class BitcoinAllCurrencyPOJO {
     private String disclaimer;

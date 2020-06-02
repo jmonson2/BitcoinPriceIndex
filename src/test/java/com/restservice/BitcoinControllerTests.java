@@ -1,4 +1,4 @@
-package com.example.restservice;
+package com.restservice;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

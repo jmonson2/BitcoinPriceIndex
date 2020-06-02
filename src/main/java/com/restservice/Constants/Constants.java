@@ -1,4 +1,4 @@
-package com.example.restservice.Constants;
+package com.restservice.Constants;
 
 public class Constants {
     public static final String USD = "USD";

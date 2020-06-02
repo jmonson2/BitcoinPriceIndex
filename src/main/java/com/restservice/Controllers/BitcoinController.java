@@ -1,17 +1,17 @@
-package com.example.restservice.Controllers;
+package com.restservice.Controllers;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.example.restservice.POJO.BitcoinAllCurrencyPOJO;
-import com.example.restservice.POJO.BitcoinPOJO;
+import com.restservice.POJO.BitcoinAllCurrencyPOJO;
+import com.restservice.POJO.BitcoinPOJO;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import static com.example.restservice.Constants.Constants.*;
+import static com.restservice.Constants.Constants.*;
 
 @RestController
 public class BitcoinController {
