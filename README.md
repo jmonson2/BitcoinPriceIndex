@@ -18,9 +18,10 @@ Current Endpoints:
   </tr>
   <tr>
     <td>GBP</td>
-    <td>bitcoin/GBP
+    <td>bitcoin/GBP</td>
   </tr>
   <tr>
     <td>ALL</td>
     <td>/bitcoin</td>
+  </tr>
 </table>
