@@ -6,7 +6,7 @@ Build with the included gradle utility.
 
 Run with `./gradlew bootRun`
 
-This API is using the free <a href=https://www.coindesk.com/coindesk-api>Coindesk API</a> to fetch bitcoin rates for USD, EUR, and GBP. It also uses <a href=https://exchangeratesapi.io/>Exchange Rates API</a> to fetch fiat exchange values to calculate rates for many other currencies!
+This API is using the free <a href=https://www.coindesk.com/coindesk-api>Coindesk API</a> to fetch bitcoin rates for USD, EUR, and GBP. It also uses the <a href=https://exchangeratesapi.io/>Exchange Rates API</a> to fetch fiat exchange values to calculate rates for many other currencies!
 
 Current Endpoints: 
 <table>
