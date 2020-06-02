@@ -1,5 +1,6 @@
 package com.restservice.Controllers;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -20,16 +21,12 @@ public class BitcoinController {
     private RestTemplate restTemplate = new RestTemplate();
     private JsonParser springParser = JsonParserFactory.getJsonParser();
 
-    @PostMapping("/bitcoin")
+    @PostMapping(BTC_ENDPOINT)
     public BitcoinAllCurrency bitcoin() {
         String disclaimer;
-        String exchangeResponse;
         Map<String, Object> results;
-        Map<String, Object> exchangeResults;
-        String response = restTemplate.getForObject(REQUEST_URI, String.class);
-        exchangeResponse = restTemplate.getForObject(EXCHANGE_REQUEST_URI, String.class);
+        String response = restTemplate.getForObject(BTC_REQUEST_URI, String.class);
         results = springParser.parseMap(response);
-        exchangeResults = springParser.parseMap(exchangeResponse);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceUSD =  getPrice(USD, results);
         String priceEUR = getPrice(EUR, results);
@@ -37,37 +34,48 @@ public class BitcoinController {
         return new BitcoinAllCurrency(disclaimer, priceUSD, priceEUR, priceGBP);
     }
 
-    @PostMapping("/bitcoin/USD")
+    @PostMapping(BTC_USD_ENDPOINT)
     public Bitcoin bitcoinUSD() {
         String disclaimer;
         Map<String, Object> results;
-        String response = restTemplate.getForObject(REQUEST_URI, String.class);
+        String response = restTemplate.getForObject(BTC_REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceUSD =  getPrice(USD, results);
         return new Bitcoin(disclaimer, priceUSD);
     }
 
-    @PostMapping("/bitcoin/EUR")
+    @PostMapping(BTC_EUR_ENDPOINT)
     public Bitcoin bitcoinEUR() {
         String disclaimer;
         Map<String, Object> results;
-        String response = restTemplate.getForObject(REQUEST_URI, String.class);
+        String response = restTemplate.getForObject(BTC_REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceEUR =  getPrice(EUR, results);
         return new Bitcoin(disclaimer, priceEUR);
     }
 
-    @PostMapping("/bitcoin/GBP")
+    @PostMapping(BTC_GBP_ENDPOINT)
     public Bitcoin bitcoinGBP() {
         String disclaimer;
         Map<String, Object> results;
-        String response = restTemplate.getForObject(REQUEST_URI, String.class);
+        String response = restTemplate.getForObject(BTC_REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
         String priceGBP =  getPrice(GBP, results);
         return new Bitcoin(disclaimer, priceGBP);
+    }
+
+    @PostMapping(BTC_CAD_ENDPOINT)
+    public Bitcoin bitcoinCAD() {
+        String disclaimer;
+        Map<String, Object> results;
+        String response = restTemplate.getForObject(BTC_REQUEST_URI, String.class);
+        results = springParser.parseMap(response);
+        disclaimer = results.get(DISCLAIMER).toString();
+        String priceCAD =  getPrice(CAD, results);
+        return new Bitcoin(disclaimer, priceCAD);
     }
 
     private String getPrice(String type, Map<String, Object> bpi) {
@@ -84,7 +92,23 @@ public class BitcoinController {
             Map priceGBP = (Map)prices.get(GBP);
             return priceGBP.get(RATE).toString();
         }
-        //Need to return 206 for unsupported currencies in future
-        return UNSUPPORTED_CURRENCY;
+        //Will need to do conversions for below Currencies
+        else {
+            String exchangeResponse = restTemplate.getForObject(EXCHANGE_REQUEST_URI, String.class);
+            Map<String, Object> exchangeResults;
+            exchangeResults = springParser.parseMap(exchangeResponse);
+            Map rates = (Map)exchangeResults.get(RATES);
+            Map priceEUR = (Map)prices.get(EUR);
+            //Remove , in order to be able to parse as double
+            double basePrice = Double.parseDouble(priceEUR.get(RATE).toString().replaceAll(",",""));
+            if (CAD.equalsIgnoreCase(type)) {
+                double rateCAD = Double.parseDouble(rates.get(CAD).toString());
+                double result = rateCAD * basePrice;
+                DecimalFormat priceFormat = new DecimalFormat("#.00");
+                return (priceFormat.format(result));
+            }
+            //Need to return 206 for unsupported currencies in future
+            return UNSUPPORTED_CURRENCY;
+        }
     }
 }
