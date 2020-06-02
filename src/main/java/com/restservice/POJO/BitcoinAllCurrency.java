@@ -1,12 +1,12 @@
 package com.restservice.POJO;
 
-public class BitcoinAllCurrencyPOJO {
+public class BitcoinAllCurrency {
     private String disclaimer;
     private String rateUSD;
     private String rateEUR;
     private String rateGBP;
 
-    public BitcoinAllCurrencyPOJO(String disclaimer, String priceUSD, String priceEUR, String priceGBP) {
+    public BitcoinAllCurrency(String disclaimer, String priceUSD, String priceEUR, String priceGBP) {
         this.disclaimer = disclaimer;
         this.rateUSD = priceUSD;
         this.rateEUR = priceEUR;
