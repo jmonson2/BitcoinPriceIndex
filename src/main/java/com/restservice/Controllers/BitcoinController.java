@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,7 +24,7 @@ public class BitcoinController {
     DecimalFormat priceFormat = new DecimalFormat("#.00");
     protected Logger logger = LoggerFactory.getLogger(BitcoinController.class);
 
-    @PostMapping(BTC_ENDPOINT)
+    @GetMapping(BTC_ENDPOINT)
     public BitcoinAllCurrency bitcoin() {
         String disclaimer;
         Map<String, Object> results;
@@ -43,7 +43,7 @@ public class BitcoinController {
         return bitcoinAllCurrency;
     }
 
-    @PostMapping(BTC_USD_ENDPOINT)
+    @GetMapping(BTC_USD_ENDPOINT)
     public Bitcoin bitcoinUSD() {
         String disclaimer;
         Map<String, Object> results;
@@ -54,7 +54,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceUSD);
     }
 
-    @PostMapping(BTC_EUR_ENDPOINT)
+    @GetMapping(BTC_EUR_ENDPOINT)
     public Bitcoin bitcoinEUR() {
         String disclaimer;
         Map<String, Object> results;
@@ -65,7 +65,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceEUR);
     }
 
-    @PostMapping(BTC_GBP_ENDPOINT)
+    @GetMapping(BTC_GBP_ENDPOINT)
     public Bitcoin bitcoinGBP() {
         String disclaimer;
         Map<String, Object> results;
@@ -76,7 +76,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceGBP);
     }
 
-    @PostMapping(BTC_CAD_ENDPOINT)
+    @GetMapping(BTC_CAD_ENDPOINT)
     public Bitcoin bitcoinCAD() {
         String disclaimer;
         Map<String, Object> results;
@@ -87,7 +87,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceCAD);
     }
 
-    @PostMapping(BTC_HKD_ENDPOINT)
+    @GetMapping(BTC_HKD_ENDPOINT)
     public Bitcoin bitcoinHKD() {
         String disclaimer;
         Map<String, Object> results;
@@ -98,7 +98,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceHKD);
     }
 
-    @PostMapping(BTC_ISK_ENDPOINT)
+    @GetMapping(BTC_ISK_ENDPOINT)
     public Bitcoin bitcoinISK() {
         String disclaimer;
         Map<String, Object> results;
@@ -109,7 +109,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceISK);
     }
 
-    @PostMapping(BTC_PHP_ENDPOINT)
+    @GetMapping(BTC_PHP_ENDPOINT)
     public Bitcoin bitcoinPHP() {
         String disclaimer;
         Map<String, Object> results;
@@ -120,7 +120,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, pricePHP);
     }
 
-    @PostMapping(BTC_DKK_ENDPOINT)
+    @GetMapping(BTC_DKK_ENDPOINT)
     public Bitcoin bitcoinDKK() {
         String disclaimer;
         Map<String, Object> results;
@@ -131,7 +131,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceDKK);
     }
 
-    @PostMapping(BTC_HUF_ENDPOINT)
+    @GetMapping(BTC_HUF_ENDPOINT)
     public Bitcoin bitcoinHUF() {
         String disclaimer;
         Map<String, Object> results;
@@ -142,7 +142,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceHUF);
     }
 
-    @PostMapping(BTC_CZK_ENDPOINT)
+    @GetMapping(BTC_CZK_ENDPOINT)
     public Bitcoin bitcoinCZK() {
         String disclaimer;
         Map<String, Object> results;
@@ -153,7 +153,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceCZK);
     }
 
-    @PostMapping(BTC_AUD_ENDPOINT)
+    @GetMapping(BTC_AUD_ENDPOINT)
     public Bitcoin bitcoinAUD() {
         String disclaimer;
         Map<String, Object> results;
@@ -164,7 +164,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceAUD);
     }
 
-    @PostMapping(BTC_RON_ENDPOINT)
+    @GetMapping(BTC_RON_ENDPOINT)
     public Bitcoin bitcoinRON() {
         String disclaimer;
         Map<String, Object> results;
@@ -175,7 +175,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceRON);
     }
 
-    @PostMapping(BTC_SEK_ENDPOINT)
+    @GetMapping(BTC_SEK_ENDPOINT)
     public Bitcoin bitcoinSEK() {
         String disclaimer;
         Map<String, Object> results;
@@ -186,7 +186,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceSEK);
     }
 
-    @PostMapping(BTC_IDR_ENDPOINT)
+    @GetMapping(BTC_IDR_ENDPOINT)
     public Bitcoin bitcoinIDR() {
         String disclaimer;
         Map<String, Object> results;
@@ -197,7 +197,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceIDR);
     }
 
-    @PostMapping(BTC_INR_ENDPOINT)
+    @GetMapping(BTC_INR_ENDPOINT)
     public Bitcoin bitcoinINR() {
         String disclaimer;
         Map<String, Object> results;
@@ -208,7 +208,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceINR);
     }
 
-    @PostMapping(BTC_BRL_ENDPOINT)
+    @GetMapping(BTC_BRL_ENDPOINT)
     public Bitcoin bitcoinBRL() {
         String disclaimer;
         Map<String, Object> results;
@@ -219,7 +219,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceBRL);
     }
 
-    @PostMapping(BTC_RUB_ENDPOINT)
+    @GetMapping(BTC_RUB_ENDPOINT)
     public Bitcoin bitcoinRUB() {
         String disclaimer;
         Map<String, Object> results;
@@ -230,7 +230,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceRUB);
     }
 
-    @PostMapping(BTC_HRK_ENDPOINT)
+    @GetMapping(BTC_HRK_ENDPOINT)
     public Bitcoin bitcoinHRK() {
         String disclaimer;
         Map<String, Object> results;
@@ -241,7 +241,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceHRK);
     }
 
-    @PostMapping(BTC_JPY_ENDPOINT)
+    @GetMapping(BTC_JPY_ENDPOINT)
     public Bitcoin bitcoinJPY() {
         String disclaimer;
         Map<String, Object> results;
@@ -252,7 +252,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceJPY);
     }
 
-    @PostMapping(BTC_THB_ENDPOINT)
+    @GetMapping(BTC_THB_ENDPOINT)
     public Bitcoin bitcoinTHB() {
         String disclaimer;
         Map<String, Object> results;
@@ -263,7 +263,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceTHB);
     }
 
-    @PostMapping(BTC_CHF_ENDPOINT)
+    @GetMapping(BTC_CHF_ENDPOINT)
     public Bitcoin bitcoinCHF() {
         String disclaimer;
         Map<String, Object> results;
@@ -274,7 +274,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceCHF);
     }
 
-    @PostMapping(BTC_SGD_ENDPOINT)
+    @GetMapping(BTC_SGD_ENDPOINT)
     public Bitcoin bitcoinSGD() {
         String disclaimer;
         Map<String, Object> results;
@@ -285,7 +285,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceSGD);
     }
 
-    @PostMapping(BTC_PLN_ENDPOINT)
+    @GetMapping(BTC_PLN_ENDPOINT)
     public Bitcoin bitcoinPLN() {
         String disclaimer;
         Map<String, Object> results;
@@ -296,7 +296,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, pricePLN);
     }
 
-    @PostMapping(BTC_BGN_ENDPOINT)
+    @GetMapping(BTC_BGN_ENDPOINT)
     public Bitcoin bitcoinBGN() {
         String disclaimer;
         Map<String, Object> results;
@@ -307,7 +307,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceBGN);
     }
 
-    @PostMapping(BTC_TRY_ENDPOINT)
+    @GetMapping(BTC_TRY_ENDPOINT)
     public Bitcoin bitcoinTRY() {
         String disclaimer;
         Map<String, Object> results;
@@ -318,7 +318,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceTRY);
     }
 
-    @PostMapping(BTC_CNY_ENDPOINT)
+    @GetMapping(BTC_CNY_ENDPOINT)
     public Bitcoin bitcoinCNY() {
         String disclaimer;
         Map<String, Object> results;
@@ -329,7 +329,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceCNY);
     }
 
-    @PostMapping(BTC_NOK_ENDPOINT)
+    @GetMapping(BTC_NOK_ENDPOINT)
     public Bitcoin bitcoinNOK() {
         String disclaimer;
         Map<String, Object> results;
@@ -340,7 +340,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceNOK);
     }
 
-    @PostMapping(BTC_NZD_ENDPOINT)
+    @GetMapping(BTC_NZD_ENDPOINT)
     public Bitcoin bitcoinNZD() {
         String disclaimer;
         Map<String, Object> results;
@@ -351,7 +351,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceNZD);
     }
 
-    @PostMapping(BTC_ZAR_ENDPOINT)
+    @GetMapping(BTC_ZAR_ENDPOINT)
     public Bitcoin bitcoinZAR() {
         String disclaimer;
         Map<String, Object> results;
@@ -362,7 +362,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceZAR);
     }
 
-    @PostMapping(BTC_MXN_ENDPOINT)
+    @GetMapping(BTC_MXN_ENDPOINT)
     public Bitcoin bitcoinMXN() {
         String disclaimer;
         Map<String, Object> results;
@@ -373,7 +373,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceMXN);
     }
 
-    @PostMapping(BTC_ILS_ENDPOINT)
+    @GetMapping(BTC_ILS_ENDPOINT)
     public Bitcoin bitcoinILS() {
         String disclaimer;
         Map<String, Object> results;
@@ -384,7 +384,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceILS);
     }
 
-    @PostMapping(BTC_KRW_ENDPOINT)
+    @GetMapping(BTC_KRW_ENDPOINT)
     public Bitcoin bitcoinKRW() {
         String disclaimer;
         Map<String, Object> results;
@@ -395,7 +395,7 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceKRW);
     }
 
-    @PostMapping(BTC_MYR_ENDPOINT)
+    @GetMapping(BTC_MYR_ENDPOINT)
     public Bitcoin bitcoinMYR() {
         String disclaimer;
         Map<String, Object> results;
