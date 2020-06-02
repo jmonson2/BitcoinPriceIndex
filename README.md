@@ -1,4 +1,4 @@
-# BitcoinPriceIndex
+# Bitcoin Price Index
 REST API to gather bitcoin prices
 
 Build with the included gradle utility.
