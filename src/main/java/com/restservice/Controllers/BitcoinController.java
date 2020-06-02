@@ -31,10 +31,16 @@ public class BitcoinController {
         String response = restTemplate.getForObject(BTC_REQUEST_URI, String.class);
         results = springParser.parseMap(response);
         disclaimer = results.get(DISCLAIMER).toString();
-        String priceUSD =  getPrice(USD, results);
-        String priceEUR = getPrice(EUR, results);
-        String priceGBP = getPrice(GBP, results);
-        return new BitcoinAllCurrency(disclaimer, priceUSD, priceEUR, priceGBP);
+        String priceUSD =  priceFormat.format(Double.parseDouble(getPrice(USD, results).replaceAll(",","")));
+        String priceEUR = priceFormat.format(Double.parseDouble(getPrice(EUR, results).replaceAll(",","")));
+        String priceGBP = priceFormat.format(Double.parseDouble(getPrice(GBP, results).replaceAll(",","")));
+        String exchangeResponse = restTemplate.getForObject(EXCHANGE_REQUEST_URI, String.class);
+        Map<String, Object> exchangeResults;
+        exchangeResults = springParser.parseMap(exchangeResponse);
+        Map rates = (Map)exchangeResults.get(RATES);
+        CurrencyExchange currencyExchange = createCurrencyExchange(rates);
+        BitcoinAllCurrency bitcoinAllCurrency = getAllPrices(priceUSD, priceEUR, priceGBP, currencyExchange);
+        return bitcoinAllCurrency;
     }
 
     @PostMapping(BTC_USD_ENDPOINT)
@@ -400,8 +406,44 @@ public class BitcoinController {
         return new Bitcoin(disclaimer, priceMYR);
     }
 
-    protected String getPrice(String type, Map<
-            String, Object> bpi) {
+    protected BitcoinAllCurrency getAllPrices(String priceUSD, String priceEUR, String priceGBP,
+                                              CurrencyExchange currencyExchange) {
+        double basePrice = Double.parseDouble(priceEUR.replaceAll(",",""));
+        BitcoinAllCurrency bitcoinAllCurrency = new BitcoinAllCurrency(priceUSD, priceEUR, priceGBP,
+                priceFormat.format(basePrice*currencyExchange.getCAD()),
+                priceFormat.format(basePrice*currencyExchange.getHKD()),
+                priceFormat.format(basePrice*currencyExchange.getISK()),
+                priceFormat.format(basePrice*currencyExchange.getPHP()),
+                priceFormat.format(basePrice*currencyExchange.getDKK()),
+                priceFormat.format(basePrice*currencyExchange.getHUF()),
+                priceFormat.format(basePrice*currencyExchange.getCZK()),
+                priceFormat.format(basePrice*currencyExchange.getAUD()),
+                priceFormat.format(basePrice*currencyExchange.getRON()),
+                priceFormat.format(basePrice*currencyExchange.getSEK()),
+                priceFormat.format(basePrice*currencyExchange.getIDR()),
+                priceFormat.format(basePrice*currencyExchange.getINR()),
+                priceFormat.format(basePrice*currencyExchange.getBRL()),
+                priceFormat.format(basePrice*currencyExchange.getRUB()),
+                priceFormat.format(basePrice*currencyExchange.getHRK()),
+                priceFormat.format(basePrice*currencyExchange.getJPY()),
+                priceFormat.format(basePrice*currencyExchange.getTHB()),
+                priceFormat.format(basePrice*currencyExchange.getCHF()),
+                priceFormat.format(basePrice*currencyExchange.getSGD()),
+                priceFormat.format(basePrice*currencyExchange.getPLN()),
+                priceFormat.format(basePrice*currencyExchange.getBGN()),
+                priceFormat.format(basePrice*currencyExchange.getTRY()),
+                priceFormat.format(basePrice*currencyExchange.getCNY()),
+                priceFormat.format(basePrice*currencyExchange.getNOK()),
+                priceFormat.format(basePrice*currencyExchange.getNZD()),
+                priceFormat.format(basePrice*currencyExchange.getNZD()),
+                priceFormat.format(basePrice*currencyExchange.getMXN()),
+                priceFormat.format(basePrice*currencyExchange.getILS()),
+                priceFormat.format(basePrice*currencyExchange.getKRW()),
+                priceFormat.format(basePrice*currencyExchange.getMYR()), DISCLAIMER_VAL);
+            return bitcoinAllCurrency;
+    }
+
+    protected String getPrice(String type, Map<String, Object> bpi) {
         Map prices = (Map)bpi.get(BPI);
         if (USD.equalsIgnoreCase(type)) {
             Map priceUSD = (Map)prices.get(USD);

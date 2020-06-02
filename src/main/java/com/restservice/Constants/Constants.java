@@ -41,6 +41,8 @@ public class Constants {
     public static final String DISCLAIMER = "disclaimer";
     public static final String RATE = "rate"; //Used to parse bitcoin api response
     public static final String RATES = "rates"; //Used to parse currency exchange api response
+    public static final String DISCLAIMER_VAL = "This data was produced from the CoinDesk Bitcoin Price Index (USD)." +
+            " Non-USD currency data converted using hourly conversion rate from openexchangerates.org";
     public static final String BTC_ENDPOINT = "/bitcoin";
     public static final String BTC_USD_ENDPOINT = "/bitcoin/USD";
     public static final String BTC_EUR_ENDPOINT = "/bitcoin/EUR";
